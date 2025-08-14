@@ -12,6 +12,7 @@ html {
 }
 
 body {
+  min-height: 100vh;
   background: linear-gradient(90deg, #1CB5E0 0%, #000851 100%);
 }
 
