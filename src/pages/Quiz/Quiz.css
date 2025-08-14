@@ -1,0 +1,105 @@
+#main-head {
+    font-size: 2.5rem;
+}
+
+.quiz-container .question-box {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.quiz-container hr {
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.761);
+}
+
+
+.quiz-container ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.quiz-container ul li {
+    list-style: none;
+    border: 1px solid rgba(0, 0, 0, 0.282);
+    height: max-content;
+    padding: 1.2rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1.8rem;
+}
+
+.score-next-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+#next-btn,
+#reset-btn {
+    width: 60%;
+    padding: 10px 15px;
+    background-color: purple;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#next-btn:hover,
+#reset-btn:hover {
+    background-color: rgba(128, 0, 128, 0.75);
+}
+
+#q-num {
+    background-color: rgba(0, 0, 0, 0.77);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    margin-right: 10px;
+}
+
+#score-p,
+#performance-p {
+    font-size: 1.7rem;
+}
+
+
+.question-box ul .correct {
+    background-color: rgb(17, 173, 17);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.029);
+}
+
+.question-box ul .wrong {
+    background-color: rgb(253, 62, 62);
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.029);
+}
+
+.reset-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.reset-box h2 {
+    font-weight: 500;
+}
+
+.reset-box span {
+    color: green;
+}

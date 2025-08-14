@@ -12,6 +12,7 @@ const AdminPage = () => {
                 <button className='box'
                     onClick={() => navigate('/quizCreate')}
                 >Create a Quiz</button>
+
                 <button className='box'>
                     Quiz Results
                 </button>
