@@ -1,0 +1,49 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table tr td {
+    border: 1px solid rgba(0, 0, 0, 0.272);
+    width: 30%;
+    text-align: center;
+    height: 2.7rem;
+    font-size: 1.3rem;
+}
+
+table thead tr td {
+    background-color: rgba(0, 0, 0, 0.102);
+}
+
+.btn-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.btn-box button {
+    width: 50%;
+    height: 3rem;
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#back-btn {
+    background-color: black;
+    color: white;
+}
+
+#clear-btn {
+    background-color: rgb(255, 50, 50);
+    color: white;
+}
+
+#no-result {
+    font-size: 1.7rem;
+    text-align: center;
+}

@@ -4,6 +4,7 @@ import { getQuizData } from '../../assets/apiData';
 import simpleData from '../../assets/data'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BiAlarm } from "react-icons/bi";
+import { localResult } from '../../assets/quizResults';
 
 const Quiz = () => {
     const [data, setData] = useState([]); // API quiz data
@@ -106,6 +107,17 @@ const Quiz = () => {
                 setTime(prev => prev + 1);
                 setSelect(true);
                 setIndex(0);
+                const newRecord = {
+                    type: location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz",
+                    totalScore: data.length,
+                    obtainScore: score
+                }
+                console.log('old: ', localResult);
+                const updatedRecord = [...localResult, newRecord]
+                localStorage.setItem("result", JSON.stringify(updatedRecord));
+
+                console.log('new: ', updatedRecord);
+
             }
         } else {
             if (quizStart)
