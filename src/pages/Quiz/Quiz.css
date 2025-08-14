@@ -1,5 +1,5 @@
 #main-head {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 .quiz-container .question-box {
@@ -63,8 +63,8 @@
 #q-num {
     background-color: rgba(0, 0, 0, 0.77);
     border-radius: 50%;
-    width: 35px;
-    height: 35px;
+    width: 3.5rem;
+    height: 3.5rem;
     display: inline-block;
     color: white;
     text-align: center;
@@ -102,4 +102,8 @@
 
 .reset-box span {
     color: green;
+}
+
+#q-h2 {
+    font-size: 2rem;
 }

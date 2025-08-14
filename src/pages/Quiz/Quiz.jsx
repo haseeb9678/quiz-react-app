@@ -99,7 +99,7 @@ const Quiz = () => {
                 </div>
             ) : (
                 <div className='question-box'>
-                    <h2>
+                    <h2 id='q-h2'>
                         <span id='q-num'>{index + 1} </span>
                         <span dangerouslySetInnerHTML={{ __html: question.question }} />
                     </h2>
