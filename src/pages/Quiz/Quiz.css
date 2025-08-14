@@ -1,3 +1,29 @@
+.timing-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    color: red;
+    font-weight: 500;
+}
+
+.timer p {
+    font-size: 2.3rem;
+    margin-top: 3px;
+}
+
+.timer span {
+    display: flex;
+    align-items: center;
+    font-size: 3.3rem;
+}
+
 #main-head {
     font-size: 3rem;
 }

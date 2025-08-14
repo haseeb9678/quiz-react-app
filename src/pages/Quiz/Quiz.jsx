@@ -3,6 +3,7 @@ import './Quiz.css';
 import { getQuizData } from '../../assets/apiData';
 import simpleData from '../../assets/data'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { BiAlarm } from "react-icons/bi";
 
 const Quiz = () => {
     const [data, setData] = useState([]); // API quiz data
@@ -13,8 +14,33 @@ const Quiz = () => {
     const [status, setStatus] = useState('');
     const [warn, setWarn] = useState('');
     const [quizStart, setQuizStart] = useState(false);
+    const [timesUp, setTimesUp] = useState(false);
     const startQuizBtn = useRef(null);
     const homeBtn = useRef(null);
+    const [time, setTime] = useState(60);
+
+    useEffect(() => {
+        if (!quizStart) return; // don't run timer if quiz hasn't started
+        if (time > 0 && reset) return; // user finsish quiz before time...
+
+        if (time <= 0) {
+            setReset(true); // show score and reset
+            setQuizStart(false);
+            setTimesUp(true);
+            handleStatus();
+            setTime(0);
+            return;
+        }
+
+        const timerId = setInterval(() => {
+            setTime(prev => prev - 1);
+        }, 1000);
+
+        // Cleanup when component unmounts or dependencies change
+        return () => clearInterval(timerId);
+
+    }, [quizStart, time]);
+
 
     const navigate = useNavigate();
 
@@ -77,6 +103,7 @@ const Quiz = () => {
             } else {
                 setReset(true);
                 handleStatus();
+                setTime(prev => prev + 1);
                 setSelect(true);
                 setIndex(0);
             }
@@ -101,6 +128,7 @@ const Quiz = () => {
     const handleStart = () => {
         if (!quizStart) {
             setQuizStart(true);
+            setTime(60);
             setWarn('');
             startQuizBtn.current.classList.add("disable-btn");
             homeBtn.current.classList.add("disable-btn");
@@ -122,12 +150,24 @@ const Quiz = () => {
     return (
         <>
             <section className='quiz-container section-box'>
-                <h2 id='main-head'>
-                    {location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz"}
-                </h2>
+                <div className="timing-box">
+                    <h2 id='main-head'>
+                        {location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz"}
+                    </h2>
+                    {
+                        timesUp ? null : <div className='timer'>
+                            <span><BiAlarm /></span>
+                            <p>{time}s</p>
+                        </div>
+                    }
+                </div>
                 <hr />
                 {reset ? (
                     <div className='reset-box'>
+                        {timesUp ? <div className='timer'>
+                            <span style={{ color: 'red' }}><BiAlarm /></span>
+                            <p>Times'UPP</p>
+                        </div> : null}
                         <h2>Your score is: <span>{score}</span>/{data.length}</h2>
                         <p id='performance-p'>{status} Performance</p>
                         <button
@@ -136,6 +176,7 @@ const Quiz = () => {
                                 setReset(false);
                                 setScore(0);
                                 setQuizStart(false);
+                                setTimesUp(false);
                                 startQuizBtn.current.classList.remove("disable-btn");
                                 homeBtn.current.classList.remove("disable-btn");
                             }}
