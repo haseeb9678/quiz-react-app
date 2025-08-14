@@ -9,7 +9,9 @@ const Home = () => {
             <h2 id='q-type-head'>Choose Quiz Type</h2>
             <hr />
             <div className="button-box">
-                <button id='local-q-btn'>Local Quiz</button>
+                <button
+                    id='local-q-btn'
+                    onClick={() => navigate('/quiz', { state: { status: 'local' } })}>Local Quiz</button>
                 <button
                     id='api-q-btn'
                     onClick={() => navigate('/quiz', { state: { status: 'api' } })}

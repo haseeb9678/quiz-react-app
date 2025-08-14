@@ -67,12 +67,13 @@
     height: 3.5rem;
     display: inline-block;
     color: white;
-    text-align: center;
     margin-right: 10px;
+    text-align: center;
 }
 
 #score-p,
-#performance-p {
+#performance-p,
+#warn-p {
     font-size: 1.7rem;
 }
 
@@ -106,4 +107,35 @@
 
 #q-h2 {
     font-size: 2rem;
+}
+
+.back-home-box {
+    width: 100%;
+    margin: 50px auto;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.back-home-box button {
+    width: 50%;
+    max-width: 200px;
+    height: 3.8rem;
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}
+
+.disable-btn {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#home-btn {
+    background-color: rgb(200, 30, 238);
 }

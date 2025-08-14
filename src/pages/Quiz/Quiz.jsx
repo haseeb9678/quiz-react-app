@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Quiz.css';
 import { getQuizData } from '../../assets/apiData';
+import simpleData from '../../assets/data'
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Quiz = () => {
     const [data, setData] = useState([]); // API quiz data
@@ -9,7 +11,14 @@ const Quiz = () => {
     const [select, setSelect] = useState(true);
     const [reset, setReset] = useState(false);
     const [status, setStatus] = useState('');
-    const [warn, setWarn] = useState(false);
+    const [warn, setWarn] = useState('');
+    const [quizStart, setQuizStart] = useState(false);
+    const startQuizBtn = useRef(null);
+    const homeBtn = useRef(null);
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
 
     const option1 = useRef(null);
     const option2 = useRef(null);
@@ -21,15 +30,25 @@ const Quiz = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const info = await getQuizData()
+            let info;
+            if (location.state.status == 'api') {
+                info = await getQuizData()
+            } else {
+                info = simpleData;
+            }
+
             setData(info);
         }
         fetchData();
     }, [])
 
     const checkAns = (e, ans) => {
-        setWarn(false);
-        if (select) {
+        setWarn('');
+        if (!quizStart) {
+            setWarn('Please start the quiz!')
+            return null;
+        }
+        if (select && quizStart) {
             if (question.answer === ans) {
                 e.target.classList.add("correct");
                 setScore(prev => prev + 1);
@@ -62,7 +81,11 @@ const Quiz = () => {
                 setIndex(0);
             }
         } else {
-            setWarn(true);
+            if (quizStart)
+                setWarn('Please select any option...');
+            else {
+                setWarn('Please start the quiz!');
+            }
         }
     };
 
@@ -75,49 +98,86 @@ const Quiz = () => {
         else setStatus("Outstanding");
     };
 
+    const handleStart = () => {
+        if (!quizStart) {
+            setQuizStart(true);
+            setWarn('');
+            startQuizBtn.current.classList.add("disable-btn");
+            homeBtn.current.classList.add("disable-btn");
+        }
+    }
+
+    const handleHome = () => {
+        const classList = homeBtn.current.classList
+        if (!classList.contains('disable-btn')) {
+            navigate('/');
+        }
+
+    }
+
     if (data.length === 0) {
         return <section className="section-box"><h2>Loading quiz...</h2></section>;
     }
 
     return (
-        <section className='quiz-container section-box'>
-            <h2 id='main-head'>API-Based Quiz</h2>
-            <hr />
-            {reset ? (
-                <div className='reset-box'>
-                    <h2>Your score is: <span>{score}</span>/{data.length}</h2>
-                    <p id='performance-p'>{status} Performance</p>
-                    <button
-                        id='reset-btn'
-                        onClick={() => {
-                            setReset(false);
-                            setScore(0);
-                        }}
-                    >
-                        Reset
-                    </button>
-                </div>
-            ) : (
-                <div className='question-box'>
-                    <h2 id='q-h2'>
-                        <span id='q-num'>{index + 1} </span>
-                        <span dangerouslySetInnerHTML={{ __html: question.question }} />
-                    </h2>
-                    <ul>
-
-                        <li ref={option1} onClick={(event) => checkAns(event, 1)} dangerouslySetInnerHTML={{ __html: question.option1 }} />
-                        <li ref={option2} onClick={(event) => checkAns(event, 2)} dangerouslySetInnerHTML={{ __html: question.option2 }} />
-                        <li ref={option3} onClick={(event) => checkAns(event, 3)} dangerouslySetInnerHTML={{ __html: question.option3 }} />
-                        <li ref={option4} onClick={(event) => checkAns(event, 4)} dangerouslySetInnerHTML={{ __html: question.option4 }} />
-                    </ul>
-                    <div className='score-next-container'>
-                        <button onClick={handleNext} id='next-btn'>Next</button>
-                        {warn ? <p style={{ color: "red" }}>Please choose one option</p> : null}
-                        <p id='score-p'>Score: {score}/{data.length}</p>
+        <>
+            <section className='quiz-container section-box'>
+                <h2 id='main-head'>
+                    {location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz"}
+                </h2>
+                <hr />
+                {reset ? (
+                    <div className='reset-box'>
+                        <h2>Your score is: <span>{score}</span>/{data.length}</h2>
+                        <p id='performance-p'>{status} Performance</p>
+                        <button
+                            id='reset-btn'
+                            onClick={() => {
+                                setReset(false);
+                                setScore(0);
+                                setQuizStart(false);
+                                startQuizBtn.current.classList.remove("disable-btn");
+                                homeBtn.current.classList.remove("disable-btn");
+                            }}
+                        >
+                            Reset
+                        </button>
                     </div>
-                </div>
-            )}
-        </section>
+                ) : (
+                    <div className='question-box'>
+                        <h2 id='q-h2'>
+                            <span id='q-num'>{index + 1}</span>
+                            <span dangerouslySetInnerHTML={{ __html: question.question }} />
+                        </h2>
+                        <ul>
+
+                            <li ref={option1} onClick={(event) => checkAns(event, 1)} dangerouslySetInnerHTML={{ __html: question.option1 }} />
+                            <li ref={option2} onClick={(event) => checkAns(event, 2)} dangerouslySetInnerHTML={{ __html: question.option2 }} />
+                            <li ref={option3} onClick={(event) => checkAns(event, 3)} dangerouslySetInnerHTML={{ __html: question.option3 }} />
+                            <li ref={option4} onClick={(event) => checkAns(event, 4)} dangerouslySetInnerHTML={{ __html: question.option4 }} />
+                        </ul>
+                        <div className='score-next-container'>
+                            <button onClick={handleNext} id='next-btn'>Next</button>
+                            {warn ? <p id='warn-p' style={{ color: "red" }}>{warn}</p> : null}
+                            <p id='score-p'>Score: {score}/{data.length}</p>
+                        </div>
+                    </div>
+                )}
+            </section>
+            <div className='back-home-box'>
+                <button
+                    ref={homeBtn}
+                    onClick={handleHome}
+                    id='home-btn'
+                >Go to Home Page</button>
+                <button
+                    ref={startQuizBtn}
+                    onClick={handleStart}
+                    id='start-quiz-btn'
+                >Start Quiz</button>
+            </div>
+
+        </>
     );
 };
 
