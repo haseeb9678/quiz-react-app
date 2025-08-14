@@ -1,0 +1,17 @@
+.admin-data-section {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-section .box {
+    height: 50px;
+    width: 50%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    border: none;
+    outline: none;
+}
