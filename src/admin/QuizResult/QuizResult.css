@@ -1,14 +1,39 @@
+#quiz-result {
+    width: 80%;
+    max-width: 900px;
+}
+
+.result-container {
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.total-quiz-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1.5rem;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
+    overflow-x: scroll;
 }
 
 table tr td {
     border: 1px solid rgba(0, 0, 0, 0.272);
-    width: 30%;
+    width: max-content;
     text-align: center;
     height: 2.7rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(0, 255, 255, 0.286);
 }
 
 table thead tr td {
@@ -46,4 +71,25 @@ table thead tr td {
 #no-result {
     font-size: 1.7rem;
     text-align: center;
+}
+
+@media screen and (max-width: 700px) {
+    html {
+        font-size: 9px;
+    }
+
+    table tr td {
+        padding: 0.5rem;
+    }
+
+    #quiz-result {
+        width: 90%;
+        max-width: 500px;
+        min-width: 250px;
+    }
+
+    .total-quiz-container {
+        flex-direction: column;
+        align-items: center;
+    }
 }

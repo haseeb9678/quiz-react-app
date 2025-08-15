@@ -1,9 +1,8 @@
-const result = [
-]
-
-if (!result)
-    localStorage.setItem("result", JSON.stringify(result));
-
-const localResult = JSON.parse(localStorage.getItem("result")) || [];
-
-export { localResult }
+export function getLocalResult() {
+    let result = localStorage.getItem("result");
+    if (!result) {
+        localStorage.setItem("result", JSON.stringify([]));
+        result = "[]";
+    }
+    return JSON.parse(result);
+}

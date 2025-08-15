@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './Quiz.css';
 import { getQuizData } from '../../assets/apiData';
-import simpleData from '../../assets/data'
+import quizData from '../../assets/data';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BiAlarm } from "react-icons/bi";
-import { localResult } from '../../assets/quizResults';
+import { getLocalResult } from '../../assets/quizResults';
 
 const Quiz = () => {
-    const [data, setData] = useState([]); // API quiz data
+    const [data, setData] = useState([]);
     const [index, setIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [select, setSelect] = useState(true);
@@ -19,6 +19,36 @@ const Quiz = () => {
     const startQuizBtn = useRef(null);
     const homeBtn = useRef(null);
     const [time, setTime] = useState(60);
+    const [dataReload, setDataReload] = useState(true);
+
+    useEffect(() => {
+        // Fisher–Yates Shuffle
+        function shuffleData(array) {
+            const shuffled = [...array]; // copy to avoid mutating original
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        async function fetchData() {
+            let info;
+            if (location.state.status == 'api') {
+                info = await getQuizData()
+            } else {
+                info = quizData;
+            }
+            setData(shuffleData(info));
+        }
+
+        if (dataReload) {
+            console.log('Data Reload');
+            fetchData();
+            setDataReload(false);
+        }
+
+    }, [dataReload])
 
     useEffect(() => {
         if (!quizStart) return; // don't run timer if quiz hasn't started
@@ -28,7 +58,7 @@ const Quiz = () => {
             setReset(true); // show score and reset
             setQuizStart(false);
             setTimesUp(true);
-            handleStatus();
+            setStatus(getUserStatus());
             setTime(0);
             return;
         }
@@ -44,9 +74,7 @@ const Quiz = () => {
 
 
     const navigate = useNavigate();
-
     const location = useLocation();
-
     const option1 = useRef(null);
     const option2 = useRef(null);
     const option3 = useRef(null);
@@ -54,20 +82,6 @@ const Quiz = () => {
 
     const options = [option1, option2, option3, option4];
     const question = data[index];
-
-    useEffect(() => {
-        async function fetchData() {
-            let info;
-            if (location.state.status == 'api') {
-                info = await getQuizData()
-            } else {
-                info = simpleData;
-            }
-
-            setData(info);
-        }
-        fetchData();
-    }, [])
 
     const checkAns = (e, ans) => {
         setWarn('');
@@ -103,19 +117,23 @@ const Quiz = () => {
                 resetClasses();
             } else {
                 setReset(true);
-                handleStatus();
+                setDataReload(true);
                 setTime(prev => prev + 1);
                 setSelect(true);
                 setIndex(0);
+
+                const userStatus = getUserStatus();
+                setStatus(userStatus);
+
                 const newRecord = {
+                    user: 'anonymus',
                     type: location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz",
                     totalScore: data.length,
-                    obtainScore: score
+                    obtainScore: score,
+                    performance: userStatus
                 }
-                console.log('old: ', localResult);
-                const updatedRecord = [...localResult, newRecord]
+                const updatedRecord = [...getLocalResult(), newRecord]
                 localStorage.setItem("result", JSON.stringify(updatedRecord));
-
                 console.log('new: ', updatedRecord);
 
             }
@@ -128,13 +146,13 @@ const Quiz = () => {
         }
     };
 
-    const handleStatus = () => {
+    const getUserStatus = () => {
         const points = (score / data.length) * 100;
-        if (points <= 30) setStatus("Poor");
-        else if (points <= 50) setStatus("Average");
-        else if (points <= 80) setStatus("Good");
-        else if (points < 100) setStatus("Excellent");
-        else setStatus("Outstanding");
+        if (points <= 30) return 'Poor'
+        else if (points <= 50) return 'Average';
+        else if (points <= 80) return 'Good'
+        else if (points < 100) return 'Excellent';
+        else return 'Outstanding';
     };
 
     const handleStart = () => {
