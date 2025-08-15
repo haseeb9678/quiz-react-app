@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './QuizResult.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,13 +8,13 @@ const QuizResult = () => {
     const [totalApiQuiz, setTotalApiQuiz] = useState(0);
     const [totalLocalQuiz, setTotalLocalQuiz] = useState(0);
     const navigate = useNavigate();
+    const filter2 = useRef(null);
 
     const handleMarksSelect = (e) => {
         const filter = e.currentTarget.value;
         let filteredData = [...filterResults];
 
         if (filter === 'default') {
-            setFilterResults(userResults);
             return;
         } else if (filter === 'ascending') {
             filteredData.sort((a, b) => a.obtainScore - b.obtainScore);
@@ -36,6 +36,8 @@ const QuizResult = () => {
             const filteredData = userResults.filter((q) => q.type === 'API-Based Quiz');
             setFilterResults(filteredData);
         }
+
+        filter2.current.value = '';
     };
 
     useEffect(() => {
@@ -95,7 +97,9 @@ const QuizResult = () => {
                             <option value="api">API</option>
                             <option value="local">Local</option>
                         </select>
-                        <select name="filter-marks" defaultValue={''} onChange={handleMarksSelect}>
+                        <select
+                            ref={filter2}
+                            name="filter-marks" defaultValue={''} onChange={handleMarksSelect}>
                             <option value="" disabled>Choose option</option>
                             <option value="default">Default</option>
                             <option value="descending">Descending Order</option>

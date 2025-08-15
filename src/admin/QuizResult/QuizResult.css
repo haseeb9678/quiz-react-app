@@ -25,9 +25,8 @@ table {
 
 table tr td {
     border: 1px solid rgba(0, 0, 0, 0.272);
-    width: max-content;
-    min-width: 30px;
     text-align: center;
+    min-width: 120px;
     height: 2.7rem;
     font-size: 1.5rem;
     padding: 1rem;
