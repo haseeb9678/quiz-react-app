@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useId } from 'react';
 import './Quiz.css';
 import { getQuizData } from '../../assets/apiData';
 import quizData from '../../assets/data';
@@ -125,13 +125,13 @@ const Quiz = () => {
 
                 const userStatus = getUserStatus();
                 setStatus(userStatus);
-
                 const newRecord = {
                     user: location.state.username,
                     type: location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz",
                     totalScore: data.length,
                     obtainScore: score,
-                    performance: userStatus
+                    performance: userStatus,
+                    status: 'new'
                 }
                 const updatedRecord = [...getLocalResult(), newRecord]
                 localStorage.setItem("result", JSON.stringify(updatedRecord));
@@ -199,7 +199,7 @@ const Quiz = () => {
                             <span style={{ color: 'red' }}><BiAlarm /></span>
                             <p>Times'UPP</p>
                         </div> : null}
-                        <h2>Your score is: <span>{score}</span>/{data.length}</h2>
+                        <h2>{location.state.username}, your score is: <span>{score}</span>/{data.length}</h2>
                         <p id='performance-p'>{status} Performance</p>
                         <button
                             id='reset-btn'
