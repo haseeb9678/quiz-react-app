@@ -65,32 +65,34 @@ const QuizResult = () => {
     const handleClearResult = () => {
         localStorage.setItem("result", JSON.stringify([]));
         setUserResults([]);
-        alert("Results are cleared....")
+        setFilterResults([]);
     }
     return (
         <section className='section-box' id='quiz-result'>
             <h2>Quiz Results</h2>
             <hr />
             {
+                userResults.length > 0 ?
+                    <div div className="filter-box">
+                        <h3>Filter Results</h3>
+                        <div className="select-container">
+                            <select name="filter" defaultValue={''} onChange={handleTypeSelect}>
+                                <option value="" disabled>Choose option</option>
+                                <option value="both">Both API and Local</option>
+                                <option value="api">API</option>
+                                <option value="local">Local</option>
+                            </select>
+                            <select name="filter-marks" defaultValue={''} onChange={handleMarksSelect}>
+                                <option value="" disabled>Choose option</option>
+                                <option value="default">Default</option>
+                                <option value="descending">Descending Order</option>
+                                <option value="ascending">Marks Ascending Order</option>
+                            </select>
+                        </div>
+                    </div> : null}
+            {
                 filterResults.length > 0 ?
                     <div className='result-container'>
-                        <div className="filter-box">
-                            <h3>Filter Results</h3>
-                            <div className="select-container">
-                                <select name="filter" defaultValue={''} onChange={handleTypeSelect}>
-                                    <option value="" disabled>Choose option</option>
-                                    <option value="both">Both API and Local</option>
-                                    <option value="api">API</option>
-                                    <option value="local">Local</option>
-                                </select>
-                                <select name="filter-marks" defaultValue={''} onChange={handleMarksSelect}>
-                                    <option value="" disabled>Choose option</option>
-                                    <option value="default">Default</option>
-                                    <option value="descending">Descending Order</option>
-                                    <option value="ascending">Marks Ascending Order</option>
-                                </select>
-                            </div>
-                        </div>
                         <table>
                             <thead>
                                 <tr>
@@ -131,7 +133,7 @@ const QuizResult = () => {
                     onClick={() => navigate('/admin')}>Go Back</button>
 
             </div>
-        </section>
+        </section >
     )
 }
 
