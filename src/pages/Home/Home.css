@@ -17,26 +17,26 @@
     transition: all 0.2s;
 }
 
-#local-q-btn {
-    background-color: black;
+#admin-q-btn {
+    background-color: rgb(12, 104, 225);
     color: white;
 }
 
-#api-q-btn {
-    background-color: rgb(233, 158, 20);
+#user-q-btn {
+    background-color: rgb(148, 75, 226);
     color: white;
 }
 
-#local-q-btn:hover {
+#admin-q-btn:hover {
     transform: scale(1.01);
-    box-shadow: 0px 0px 10px black;
-    background-color: rgba(0, 0, 0, 0.815);
+    box-shadow: 0px 0px 10px rgba(12, 104, 225, 0.515);
+    background-color: rgba(12, 104, 225, 0.853);
 }
 
-#api-q-btn:hover {
+#user-q-btn:hover {
     transform: scale(1.01);
-    box-shadow: 0px 0px 10px rgb(233, 158, 20);
-    background-color: rgb(233, 158, 20);
+    box-shadow: 0px 0px 10px rgba(148, 75, 226, 0.848);
+    background-color: rgba(148, 75, 226, 0.848);
 }
 
 

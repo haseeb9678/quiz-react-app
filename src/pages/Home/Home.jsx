@@ -8,19 +8,17 @@ const Home = () => {
         <section className='home-container section-box'>
             <h2 id='q-type-head'>Home</h2>
             <hr />
+
             <div className="button-box">
-                <button
-                    id='local-q-btn'
-                    onClick={() => navigate('/quiz', { state: { status: 'local' } })}>Local Quiz</button>
-                <button
-                    id='api-q-btn'
-                    onClick={() => navigate('/quiz', { state: { status: 'api' } })}
-                >API-Based Quiz</button>
+
                 <button
                     onClick={() => navigate('/admin')}
                     id='admin-q-btn'>Admin Page</button>
+                <button
+                    onClick={() => navigate('/user')}
+                    id='user-q-btn'>User Page</button>
             </div>
-        </section>
+        </section >
     )
 }
 

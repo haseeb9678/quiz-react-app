@@ -18,9 +18,10 @@ const Quiz = () => {
     const [quizStart, setQuizStart] = useState(false);
     const [timesUp, setTimesUp] = useState(false);
     const startQuizBtn = useRef(null);
-    const homeBtn = useRef(null);
+    const userBtn = useRef(null);
     const [time, setTime] = useState(60);
     const [dataReload, setDataReload] = useState(true);
+    const location = useLocation();
 
     useEffect(() => {
         // Fisher–Yates Shuffle
@@ -40,7 +41,7 @@ const Quiz = () => {
             } else {
                 info = quizData;
             }
-            setData(shuffleData(info));
+            setData(shuffleData(info.slice(0, location.state.quizLength)));
         }
 
         if (dataReload) {
@@ -75,7 +76,6 @@ const Quiz = () => {
 
 
     const navigate = useNavigate();
-    const location = useLocation();
     const option1 = useRef(null);
     const option2 = useRef(null);
     const option3 = useRef(null);
@@ -127,7 +127,7 @@ const Quiz = () => {
                 setStatus(userStatus);
 
                 const newRecord = {
-                    user: 'anonymus',
+                    user: location.state.username,
                     type: location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz",
                     totalScore: data.length,
                     obtainScore: score,
@@ -162,14 +162,14 @@ const Quiz = () => {
             setTime(60);
             setWarn('');
             startQuizBtn.current.classList.add("disable-btn");
-            homeBtn.current.classList.add("disable-btn");
+            userBtn.current.classList.add("disable-btn");
         }
     }
 
-    const handleHome = () => {
-        const classList = homeBtn.current.classList
+    const handleUser = () => {
+        const classList = userBtn.current.classList
         if (!classList.contains('disable-btn')) {
-            navigate('/');
+            navigate('/user');
         }
 
     }
@@ -209,7 +209,7 @@ const Quiz = () => {
                                 setQuizStart(false);
                                 setTimesUp(false);
                                 startQuizBtn.current.classList.remove("disable-btn");
-                                homeBtn.current.classList.remove("disable-btn");
+                                userBtn.current.classList.remove("disable-btn");
                             }}
                         >
                             Reset
@@ -236,12 +236,12 @@ const Quiz = () => {
                     </div>
                 )}
             </section>
-            <div className='back-home-box'>
+            <div className='back-user-box'>
                 <button
-                    ref={homeBtn}
-                    onClick={handleHome}
-                    id='home-btn'
-                >Go to Home Page</button>
+                    ref={userBtn}
+                    onClick={handleUser}
+                    id='user-btn'
+                >Go to User Page</button>
                 <button
                     ref={startQuizBtn}
                     onClick={handleStart}

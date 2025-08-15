@@ -6,6 +6,7 @@ import AdminPage from './admin/AdminPage/AdminPage'
 import QuizCreate from './admin/QuizCreate/QuizCreate'
 import Quiz from './pages/Quiz/Quiz'
 import QuizResult from './admin/QuizResult/QuizResult'
+import UserPage from './pages/UserPage/UserPage'
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='quizCreate' element={<QuizCreate />} />
         <Route path='quiz' element={<Quiz />} />
         <Route path='result' element={<QuizResult />} />
+        <Route path='user' element={<UserPage />} />
       </Route>
     )
   )

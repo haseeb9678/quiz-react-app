@@ -73,7 +73,7 @@ const QuizResult = () => {
             <hr />
             {
                 userResults.length > 0 ?
-                    <div div className="filter-box">
+                    <div className="filter-box">
                         <h3>Filter Results</h3>
                         <div className="select-container">
                             <select name="filter" defaultValue={''} onChange={handleTypeSelect}>

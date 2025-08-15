@@ -135,7 +135,7 @@
     font-size: 2rem;
 }
 
-.back-home-box {
+.back-user-box {
     width: 100%;
     margin: 50px auto;
     padding: 10px;
@@ -145,7 +145,7 @@
     gap: 2rem;
 }
 
-.back-home-box button {
+.back-user-box button {
     width: 50%;
     max-width: 200px;
     height: 3.8rem;
@@ -163,7 +163,7 @@
     cursor: not-allowed;
 }
 
-#home-btn {
+#user-btn {
     background-color: rgb(200, 30, 238);
 }
 
@@ -175,7 +175,7 @@
 
 
 @media screen and (max-width: 700px) {
-    .back-home-box {
+    .back-user-box {
         flex-direction: column-reverse;
         align-items: center;
 
