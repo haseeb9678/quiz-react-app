@@ -1,17 +1,11 @@
 import React from 'react'
 import './Navbar.css'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = () => {
     return (
         <header>
             <h2>Quiz App</h2>
-            <nav>
-                <ul>
-                    <li><a href="#"></a>Home</li>
-                    <li><a href="#"></a>AI Based Quiz App</li>
-                    <li><a href="#"></a>Local App</li>
-                </ul>
-            </nav>
         </header>
     )
 }

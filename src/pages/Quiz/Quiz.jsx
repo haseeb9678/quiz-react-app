@@ -5,6 +5,7 @@ import quizData from '../../assets/data';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BiAlarm } from "react-icons/bi";
 import { getLocalResult } from '../../assets/quizResults';
+import { BiSearchAlt } from "react-icons/bi";
 
 const Quiz = () => {
     const [data, setData] = useState([]);
@@ -174,7 +175,7 @@ const Quiz = () => {
     }
 
     if (data.length === 0) {
-        return <section className="section-box"><h2>Loading quiz...</h2></section>;
+        return <section className="section-box loading-section"><h2><BiSearchAlt />Loading quiz...</h2></section>;
     }
 
     return (

@@ -33,7 +33,7 @@ table tr td {
 }
 
 table tr:nth-child(even) {
-    background-color: rgba(0, 255, 255, 0.286);
+    background-color: rgba(23, 226, 237, 0.125);
 }
 
 table thead tr td {
@@ -73,6 +73,33 @@ table thead tr td {
     text-align: center;
 }
 
+.filter-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    gap: 1.5rem;
+}
+
+.filter-box .select-container {
+    display: flex;
+    width: 80%;
+    gap: 2rem;
+}
+
+.filter-box h3 {
+    font-size: 1.7rem;
+}
+
+.filter-box select {
+    height: 30px;
+    width: 50%;
+    min-width: 100px;
+    border: 1px solid rgba(0, 0, 0, 0.231);
+    border-radius: 5px;
+    outline: none;
+}
+
 @media screen and (max-width: 700px) {
     html {
         font-size: 9px;
@@ -91,5 +118,21 @@ table thead tr td {
     .total-quiz-container {
         flex-direction: column;
         align-items: center;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .filter-box {
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .filter-box .select-container {
+        flex-direction: column;
+        align-items: end;
+    }
+
+    .filter-box select {
+        width: 70%;
     }
 }

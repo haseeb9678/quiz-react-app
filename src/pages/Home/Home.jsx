@@ -6,7 +6,7 @@ const Home = () => {
     const navigate = useNavigate();
     return (
         <section className='home-container section-box'>
-            <h2 id='q-type-head'>Choose Quiz Type</h2>
+            <h2 id='q-type-head'>Home</h2>
             <hr />
             <div className="button-box">
                 <button
