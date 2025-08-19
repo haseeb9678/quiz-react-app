@@ -37,6 +37,3 @@ This project was a great learning journey for me, where I explored **React Hooks
 
 VERCEL LINK: https://quiz-react-app-ebon.vercel.app/
 
-- 🛠 **Redux Toolkit / Context API** for global state management  
-- 🎨 **Tailwind CSS** for modern styling  
-- 📚 **More advanced React concepts**  
