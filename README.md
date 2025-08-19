@@ -1,12 +1,42 @@
-# React + Vite
+# 🎯 React Quiz Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🌟 I’m super excited to share my **first React project** – a fully responsive **Quiz Application** built with **React.js** and the **Open Trivia API** 🎉  
+This project was a great learning journey for me, where I explored **React Hooks** and API integration for the first time 🚀  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## Expanding the ESLint configuration
+- 📝 **Dual Quiz Modes**: Local (custom data) & API-based (Open Trivia API)  
+- 📂 **Category Selection** before starting the quiz  
+- 🙋 **User Input**: First name & number of questions  
+- ⏳ **Timer-based Quiz** for added challenge  
+- 🏆 **Score & Performance Evaluation** (Good, Average, Poor, etc.)  
+- 📊 **Results Page** with:
+  - Table storing quiz history (score, performance, category, username)  
+  - Filterable results  
+- 💾 **LocalStorage Integration**: Persist results + Clear history option  
+- 📱 **Responsive & Clean UI**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ⚙️ Tech Highlights
+
+- ⚛️ **React.js with Hooks** (`useState`, `useEffect`, etc.)  
+- 🔗 **API Integration** with dynamic quiz fetching  
+- 💻 **LocalStorage** for data persistence  
+- 🌐 **Deployed on Vercel** | 📂 **Code hosted on GitHub**  
+
+---
+
+## 💡 Future Enhancements
+
+- 🛠 **Redux Toolkit / Context API** for global state management  
+- 🎨 **Tailwind CSS** for modern styling  
+- 📚 **More advanced React concepts**
+
+VERCEL LINK: https://quiz-react-app-ebon.vercel.app/
+
+- 🛠 **Redux Toolkit / Context API** for global state management  
+- 🎨 **Tailwind CSS** for modern styling  
+- 📚 **More advanced React concepts**  
