@@ -89,13 +89,6 @@
     cursor: pointer;
 }
 
-#next-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-}
-
 #next-btn:hover,
 #reset-btn:hover {
     background-color: rgba(128, 0, 128, 0.75);

@@ -6,6 +6,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { BiAlarm } from "react-icons/bi";
 import { getLocalResult } from '../../assets/quizResults';
 import { BiSearchAlt } from "react-icons/bi";
+import { VscAccount } from "react-icons/vsc";
+import { VscDebugStart } from "react-icons/vsc";
+import { VscHistory } from "react-icons/vsc";
 import { VscArrowRight } from "react-icons/vsc";
 
 const Quiz = () => {
@@ -131,7 +134,7 @@ const Quiz = () => {
                     totalScore: data.length,
                     obtainScore: score,
                     performance: userStatus,
-                    categoryName: localStorage.getItem("selectedCategoryName"),
+                    categoryName: location.state.status == 'api' ? localStorage.getItem("selectedCategoryName") : "Any",
                     status: 'new'
                 }
                 const updatedRecord = [...getLocalResult(), newRecord]
@@ -213,9 +216,11 @@ const Quiz = () => {
                         <p id='performance-p'>{status} Performance</p>
                         <button
                             id='reset-btn'
+                            className='btn-logo'
                             onClick={handleReset}
                         >
                             Reset
+                            <VscHistory />
                         </button>
                     </div>
                 ) : (
@@ -232,7 +237,7 @@ const Quiz = () => {
                             <li ref={option4} onClick={(event) => checkAns(event, 4)} dangerouslySetInnerHTML={{ __html: question.option4 }} />
                         </ul>
                         <div className='score-next-container'>
-                            <button onClick={handleNext} id='next-btn'>Next <VscArrowRight /></button>
+                            <button onClick={handleNext} className='btn-logo' id='next-btn'>Next <VscArrowRight /></button>
                             {warn ? <p id='warn-p' style={{ color: "red" }}>{warn}</p> : null}
                             <p id='score-p'>Score: {score}/{data.length}</p>
                             <p><strong>Quiz Category: </strong>{location.state.status == 'local' ? "Any" : localStorage.getItem("selectedCategoryName")}</p>
@@ -245,12 +250,18 @@ const Quiz = () => {
                     ref={userBtn}
                     onClick={handleUser}
                     id='user-btn'
-                >Go to User Page</button>
+                    className='btn-logo'
+                >Go to User Page
+                    <VscAccount />
+                </button>
                 <button
                     ref={startQuizBtn}
                     onClick={handleStart}
                     id='start-quiz-btn'
-                >Start Quiz</button>
+                    className='btn-logo'
+                >Start Quiz
+                    <VscDebugStart />
+                </button>
             </div>
 
         </>

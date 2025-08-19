@@ -6,6 +6,7 @@ import Quiz from './pages/Quiz/Quiz'
 import QuizResult from './admin/QuizResult/QuizResult'
 import UserPage from './pages/UserPage/UserPage'
 import APICategory from './pages/APICategory/APICategory'
+import ErrorPage from './pages/ErrorPage/ErrorPage'
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
         <Route path='quiz' element={<Quiz />} />
         <Route path='result' element={<QuizResult />} />
         <Route path='user' element={<UserPage />} />
+        <Route path='*' element={<ErrorPage />} />
 
       </Route>
     )

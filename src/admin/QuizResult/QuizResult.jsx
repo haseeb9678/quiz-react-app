@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './QuizResult.css';
 import { useNavigate } from 'react-router-dom';
+import { VscHome } from "react-icons/vsc";
+import { VscTrash } from "react-icons/vsc";
+import './QuizResult.css';
 
 const QuizResult = () => {
     const [userResults, setUserResults] = useState([]);
@@ -146,12 +148,20 @@ const QuizResult = () => {
 
             <div className='btn-box'>
                 {userResults.length > 0 && (
-                    <button id='clear-btn' onClick={handleClearResult}>
+                    <button
+                        id='clear-btn'
+                        className='btn-logo'
+                        onClick={handleClearResult}>
                         Clear All Result
+                        <VscTrash />
                     </button>
                 )}
-                <button id='back-btn' onClick={() => navigate('/')}>
-                    Go Back
+                <button
+                    className='btn-logo'
+                    id='back-btn'
+                    onClick={() => navigate('/')}>
+                    Back to Home Page
+                    <VscHome />
                 </button>
             </div>
         </section>

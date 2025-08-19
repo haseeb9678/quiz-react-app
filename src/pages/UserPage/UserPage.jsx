@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState, useId } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { VscAccount } from "react-icons/vsc";
+import { VscHome } from "react-icons/vsc";
 import './UserPage.css'
 
 const UserPage = () => {
@@ -90,7 +91,10 @@ const UserPage = () => {
                 <button
                     onClick={() => navigate('/')}
                     id='back-home-btn'
-                >Go to Home Page</button>
+                    className='btn-logo'
+                >Go to Home Page
+                    <VscHome />
+                </button>
             </div>
         </>
     )
