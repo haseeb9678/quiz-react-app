@@ -85,6 +85,7 @@ table thead tr td {
 #no-result {
     font-size: 1.7rem;
     text-align: center;
+    margin-top: 3rem;
 }
 
 .filter-box {

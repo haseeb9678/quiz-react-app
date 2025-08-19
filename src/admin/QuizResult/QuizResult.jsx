@@ -136,7 +136,7 @@ const QuizResult = () => {
                     </table>
                 </div>
             ) : (
-                <p id='no-result'>No Results to show</p>
+                <p id='no-result'>No results found — take a quiz to see your score here!</p>
             )}
 
 

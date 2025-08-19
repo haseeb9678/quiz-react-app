@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { VscArrowRight } from "react-icons/vsc";
 import './APICategory.css'
 
 const APICategory = () => {
@@ -45,7 +46,17 @@ const APICategory = () => {
                             </option>
                         ))}
                     </select>
-                    <button onClick={() => navigate('/quiz', { state: { status: location.state.status, username: location.state.username, quizLength: location.state.quizLength } })}>Go to Quiz Page</button>
+                    <button
+                        className='btn-logo'
+                        onClick={() => navigate('/quiz',
+                            {
+                                state: {
+                                    status: location.state.status,
+                                    username: location.state.username, quizLength: location.state.quizLength
+                                }
+                            })}>Go to Quiz Page
+                        <VscArrowRight />
+                    </button>
                 </div>
             </section>
         </>

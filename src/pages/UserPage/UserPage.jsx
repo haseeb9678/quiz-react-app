@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState, useId } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { VscAccount } from "react-icons/vsc";
 import { VscHome } from "react-icons/vsc";
+import { FaCoins } from "react-icons/fa6";
+import { FaFileArrowUp } from "react-icons/fa6";
+import { FaEarthAmericas } from "react-icons/fa6";
 import './UserPage.css'
 
 const UserPage = () => {
@@ -66,7 +69,11 @@ const UserPage = () => {
                                 max={10}
                                 required
                                 placeholder='Enter quiz length (5-10)' />
-                            <button>Submit</button>
+                            <button
+                                className='btn-logo'
+                            >Submit
+                                <FaFileArrowUp />
+                            </button>
                         </form>
                     </div>
                 </fieldset>}
@@ -74,17 +81,23 @@ const UserPage = () => {
                     <button
                         ref={localQuizBtn}
                         id='local-q-btn'
+                        className='btn-logo'
                         onClick={() => {
                             if (enableButoons)
                                 navigate('/quiz', { state: { status: 'local', username: name, quizLength: quizLength } })
-                        }}>Local Quiz</button>
+                        }}>Local Quiz
+                        <FaCoins />
+                    </button>
                     <button
                         ref={apiQuizBtn}
                         id='api-q-btn'
+                        className='btn-logo'
                         onClick={() => {
                             if (enableButoons)
                                 navigate('/category', { state: { status: 'api', username: name, quizLength: quizLength } })
-                        }}>API-Based Quiz</button>
+                        }}>API-Based Quiz
+                        <FaEarthAmericas />
+                    </button>
                 </div>
             </section>
             <div className='back-user-box'>
