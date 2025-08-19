@@ -75,7 +75,7 @@ const UserPage = () => {
                         id='api-q-btn'
                         onClick={() => {
                             if (enableButoons)
-                                navigate('/quiz', { state: { status: 'api', username: name, quizLength: quizLength } })
+                                navigate('/category', { state: { status: 'api', username: name, quizLength: quizLength } })
                         }}>API-Based Quiz</button>
                 </div>
             </section>

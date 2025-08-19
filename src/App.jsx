@@ -5,6 +5,7 @@ import Home from './pages/Home/Home'
 import Quiz from './pages/Quiz/Quiz'
 import QuizResult from './admin/QuizResult/QuizResult'
 import UserPage from './pages/UserPage/UserPage'
+import APICategory from './pages/APICategory/APICategory'
 
 const App = () => {
 
@@ -12,9 +13,11 @@ const App = () => {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />}>
         <Route index element={<Home />} />
+        <Route path='category' element={<APICategory />} />
         <Route path='quiz' element={<Quiz />} />
         <Route path='result' element={<QuizResult />} />
         <Route path='user' element={<UserPage />} />
+
       </Route>
     )
   )
