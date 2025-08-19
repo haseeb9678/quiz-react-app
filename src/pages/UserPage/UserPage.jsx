@@ -66,9 +66,9 @@ const UserPage = () => {
                             <input type="number"
                                 name='length'
                                 min={5}
-                                max={10}
+                                max={15}
                                 required
-                                placeholder='Enter quiz length (5-10)' />
+                                placeholder='Enter quiz length (5-15)' />
                             <button
                                 className='btn-logo'
                             >Submit

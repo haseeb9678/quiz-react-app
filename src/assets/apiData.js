@@ -1,8 +1,9 @@
 export async function getQuizData() {
     const categoryID = localStorage.getItem("selectedCategory");
+    const length = localStorage.getItem("quizLength");
     const URL = categoryID == 0 ?
-        "https://opentdb.com/api.php?amount=10&type=multiple" :
-        `https://opentdb.com/api.php?amount=10&type=multiple&category=${categoryID}`;
+        `https://opentdb.com/api.php?amount=${length}&type=multiple` :
+        `https://opentdb.com/api.php?amount=${length}&type=multiple&category=${categoryID}`;
     const res = await fetch(URL);
     const json = await res.json();
 

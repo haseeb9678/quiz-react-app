@@ -28,6 +28,10 @@ const Quiz = () => {
     const location = useLocation();
 
     useEffect(() => {
+        localStorage.setItem("quizLength", location.state.quizLength);
+    }, [])
+
+    useEffect(() => {
         // Fisher–Yates Shuffle
         function shuffleData(array) {
             const shuffled = [...array];
