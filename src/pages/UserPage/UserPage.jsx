@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState, useId } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { VscAccount } from "react-icons/vsc";
 import './UserPage.css'
 
 const UserPage = () => {
@@ -33,13 +34,15 @@ const UserPage = () => {
             setEnableButtons(false);
         }
     }, [])
+
+
     return (
         <>
             <section className='section-box'>
                 <h2>User</h2>
                 <hr />
-                <fieldset>
-                    <legend>Info</legend>
+                {!enableButoons && <fieldset>
+                    <legend><VscAccount />Info</legend>
                     <div className="user-input-box">
                         <form action={handleForm}>
                             <input
@@ -58,7 +61,7 @@ const UserPage = () => {
                             <button>Submit</button>
                         </form>
                     </div>
-                </fieldset>
+                </fieldset>}
                 <div className="button-box">
                     <button
                         ref={localQuizBtn}
@@ -84,6 +87,6 @@ const UserPage = () => {
             </div>
         </>
     )
-}
 
+}
 export default UserPage

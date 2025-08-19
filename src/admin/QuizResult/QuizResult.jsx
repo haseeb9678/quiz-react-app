@@ -148,7 +148,7 @@ const QuizResult = () => {
                         Clear All Result
                     </button>
                 )}
-                <button id='back-btn' onClick={() => navigate('/admin')}>
+                <button id='back-btn' onClick={() => navigate('/')}>
                     Go Back
                 </button>
             </div>

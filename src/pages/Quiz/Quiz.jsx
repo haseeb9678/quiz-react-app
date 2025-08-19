@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { BiAlarm } from "react-icons/bi";
 import { getLocalResult } from '../../assets/quizResults';
 import { BiSearchAlt } from "react-icons/bi";
+import { VscArrowRight } from "react-icons/vsc";
+import { VscCheck } from "react-icons/vsc";
 
 const Quiz = () => {
     const [data, setData] = useState([]);
@@ -229,7 +231,7 @@ const Quiz = () => {
                             <li ref={option4} onClick={(event) => checkAns(event, 4)} dangerouslySetInnerHTML={{ __html: question.option4 }} />
                         </ul>
                         <div className='score-next-container'>
-                            <button onClick={handleNext} id='next-btn'>Next</button>
+                            <button onClick={handleNext} id='next-btn'>Next <VscArrowRight /></button>
                             {warn ? <p id='warn-p' style={{ color: "red" }}>{warn}</p> : null}
                             <p id='score-p'>Score: {score}/{data.length}</p>
                         </div>

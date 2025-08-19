@@ -17,8 +17,8 @@ const Home = () => {
             <div className="button-box">
 
                 <button
-                    onClick={() => navigate('/admin')}
-                    id='admin-q-btn'>Admin Page</button>
+                    onClick={() => navigate('/result')}
+                    id='result-q-btn'>Quiz Results</button>
                 <button
                     onClick={() => navigate('/user', { state: { id: id } })}
                     id='user-q-btn'>User Page</button>

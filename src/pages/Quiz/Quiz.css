@@ -81,6 +81,13 @@
     cursor: pointer;
 }
 
+#next-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
 #next-btn:hover,
 #reset-btn:hover {
     background-color: rgba(128, 0, 128, 0.75);
@@ -103,18 +110,31 @@
     font-size: 1.7rem;
 }
 
+.quiz-container ul .correct,
+.quiz-container ul .wrong {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    border: 1px solid rgba(0, 0, 0, 0.119);
+}
 
-.question-box ul .correct {
+
+.correct {
     background-color: rgb(17, 173, 17);
-    color: white;
-    border: 1px solid rgba(0, 0, 0, 0.029);
 }
 
-.question-box ul .wrong {
+.wrong {
     background-color: rgb(253, 62, 62);
-    color: white;
-    border: 1px solid rgba(0, 0, 0, 0.029);
 }
+
+.correct::after {
+    content: '\2714';
+}
+
+.wrong::after {
+    content: '\2718';
+}
+
 
 .reset-box {
     display: flex;

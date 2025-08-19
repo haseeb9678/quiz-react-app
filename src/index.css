@@ -16,9 +16,9 @@ body {
 }
 
 .section-box {
-  width: 70%;
-  max-width: 500px;
-  min-width: 200px;
+  width: 75%;
+  max-width: 570px;
+  min-width: 100px;
   margin: 0 auto;
   padding: 3rem;
   display: flex;
@@ -52,6 +52,6 @@ body {
   .section-box {
     width: 70%;
     max-width: 500px;
-    min-width: 250px;
+    min-width: 200px;
   }
 }
