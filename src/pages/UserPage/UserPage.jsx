@@ -10,6 +10,10 @@ const UserPage = () => {
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        localStorage.setItem("selectedCategory", JSON.stringify({ "id": null, 'name': null }))
+    }, [])
+
     const localQuizBtn = useRef(null);
     const apiQuizBtn = useRef(null);
 

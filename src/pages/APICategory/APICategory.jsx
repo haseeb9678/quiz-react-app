@@ -4,7 +4,8 @@ import './APICategory.css'
 
 const APICategory = () => {
     const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState();
+    const [selectedCategoryName, setSelectedCategoryName] = useState();
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -19,7 +20,8 @@ const APICategory = () => {
 
     useEffect(() => {
         localStorage.setItem("selectedCategory", selectedCategory);
-    }, [selectedCategory])
+        localStorage.setItem("selectedCategoryName", selectedCategoryName);
+    }, [selectedCategory, selectedCategoryName])
 
 
     return (
@@ -30,9 +32,17 @@ const APICategory = () => {
                 <div className="category-container">
                     <select
                         value={selectedCategory}
-                        onChange={(e) => setSelectedCategory(e.target.value)}>
-                        <option value="" disabled>-- Select Category --</option>
-                        <option value="any">Any</option>
+                        onChange={(e) => {
+                            const selectedId = e.target.value;
+                            const selectedName =
+                                selectedId == 0
+                                    ? "Any Category"
+                                    : categories.find((cat) => cat.id == selectedId)?.name || "";
+
+                            setSelectedCategory(selectedId);
+                            setSelectedCategoryName(selectedName);
+                        }}>
+                        <option value={0}>Any</option>
                         {categories.map((cat) => (
                             <option key={cat.id} value={cat.id}>
                                 {cat.name}

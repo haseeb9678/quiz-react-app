@@ -234,6 +234,7 @@ const Quiz = () => {
                             <button onClick={handleNext} id='next-btn'>Next <VscArrowRight /></button>
                             {warn ? <p id='warn-p' style={{ color: "red" }}>{warn}</p> : null}
                             <p id='score-p'>Score: {score}/{data.length}</p>
+                            <p><strong>Quiz Category: </strong>{location.state.status == 'local' ? "Any" : localStorage.getItem("selectedCategoryName")}</p>
                         </div>
                     </div>
                 )}

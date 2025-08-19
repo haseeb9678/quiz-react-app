@@ -6,9 +6,6 @@ import { useId } from 'react';
 const Home = () => {
     const id = useId();
     const navigate = useNavigate();
-    useEffect(() => {
-        localStorage.setItem("userId", null);
-    }, [])
     return (
         <section className='home-container section-box'>
             <h2 id='q-type-head'>Home</h2>

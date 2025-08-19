@@ -93,6 +93,7 @@
     background-color: rgba(128, 0, 128, 0.75);
 }
 
+
 #q-num {
     background-color: rgba(0, 0, 0, 0.77);
     border-radius: 50%;
@@ -106,7 +107,7 @@
 
 #score-p,
 #performance-p,
-#warn-p {
+#warn-p #category-p {
     font-size: 1.7rem;
 }
 
