@@ -44,6 +44,10 @@ const UserPage = () => {
             <section className='section-box'>
                 <h2>User</h2>
                 <hr />
+                {!enableButoons
+                    ? <p className='notice-p'>Please provide your name and quiz length to continue.</p>
+                    : <p className='notice-p'>Hello <strong>{name}</strong> 👋, now choose your quiz type below.</p>
+                }
                 {!enableButoons && <fieldset>
                     <legend><VscAccount />Info</legend>
                     <div className="user-input-box">

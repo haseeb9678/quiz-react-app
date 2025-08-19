@@ -202,6 +202,10 @@
     .back-user-box {
         flex-direction: column-reverse;
         align-items: center;
-
     }
+
+    #main-head {
+        font-size: 2.5rem;
+    }
+
 }

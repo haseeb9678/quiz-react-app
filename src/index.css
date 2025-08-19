@@ -50,8 +50,9 @@ body {
   }
 
   .section-box {
-    width: 70%;
+    width: 85%;
     max-width: 500px;
     min-width: 200px;
   }
+
 }
