@@ -1,7 +1,5 @@
 export async function getQuizData() {
     const categoryID = localStorage.getItem("selectedCategory");
-    console.log(categoryID, localStorage.getItem("selectedCategoryName"));
-
     const URL = categoryID == 0 ?
         "https://opentdb.com/api.php?amount=10&type=multiple" :
         `https://opentdb.com/api.php?amount=10&type=multiple&category=${categoryID}`;

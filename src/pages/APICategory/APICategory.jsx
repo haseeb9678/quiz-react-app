@@ -4,18 +4,17 @@ import './APICategory.css'
 
 const APICategory = () => {
     const [categories, setCategories] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState();
-    const [selectedCategoryName, setSelectedCategoryName] = useState();
+    const [selectedCategory, setSelectedCategory] = useState(0);
+    const [selectedCategoryName, setSelectedCategoryName] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-
-    console.log(location);
-
 
     useEffect(() => {
         fetch("https://opentdb.com/api_category.php")
             .then((res) => res.json())
             .then((data) => setCategories(data.trivia_categories));
+        setSelectedCategory(0);
+        setSelectedCategoryName("Any");
     }, []);
 
     useEffect(() => {
@@ -34,11 +33,8 @@ const APICategory = () => {
                         value={selectedCategory}
                         onChange={(e) => {
                             const selectedId = e.target.value;
-                            const selectedName =
-                                selectedId == 0
-                                    ? "Any Category"
-                                    : categories.find((cat) => cat.id == selectedId)?.name || "";
-
+                            const selectedName = selectedId == 0 ? "Any" :
+                                categories.find((cat) => cat.id == selectedId)?.name || "";
                             setSelectedCategory(selectedId);
                             setSelectedCategoryName(selectedName);
                         }}>

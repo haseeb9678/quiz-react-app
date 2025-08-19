@@ -44,13 +44,11 @@ const QuizResult = () => {
         const storedResults = JSON.parse(localStorage.getItem('result')) || [];
         const seenResults = JSON.parse(localStorage.getItem('seenResults')) || [];
 
-        // Add ID to results that don't have one yet
         const resultsWithId = storedResults.map(item => ({
             ...item,
             id: item.id || Date.now() + Math.random() // unique id
         }));
 
-        // Mark "new" if ID is not in seenResults
         const markedResults = resultsWithId.map(item => ({
             ...item,
             status: seenResults.includes(item.id) ? 'old' : 'new'
@@ -59,10 +57,8 @@ const QuizResult = () => {
         setUserResults(markedResults);
         setFilterResults(markedResults);
 
-        // Save back updated results (with IDs)
         localStorage.setItem('result', JSON.stringify(resultsWithId));
 
-        // After showing, mark all as seen
         const allIds = resultsWithId.map(item => item.id);
         const updatedSeen = [...new Set([...seenResults, ...allIds])];
         localStorage.setItem('seenResults', JSON.stringify(updatedSeen));
@@ -118,6 +114,7 @@ const QuizResult = () => {
                                 <td>Obtain Score</td>
                                 <td>Total Score</td>
                                 <td>Performance</td>
+                                <td>Category</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -130,18 +127,23 @@ const QuizResult = () => {
                                     <td>{user.obtainScore}</td>
                                     <td>{user.totalScore}</td>
                                     <td>{user.performance}</td>
+                                    <td>{user.categoryName}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
-                    <div className='total-quiz-container'>
-                        <p><strong>Total Api Quiz:</strong> {totalApiQuiz}</p>
-                        <p><strong>Total Local Quiz:</strong> {totalLocalQuiz}</p>
-                    </div>
                 </div>
             ) : (
                 <p id='no-result'>No Results to show</p>
             )}
+
+
+            {userResults.length > 0 ? <div className='total-quiz-container'>
+                <p><strong>Total Api Quiz:</strong> {totalApiQuiz}</p>
+                <p><strong>Total Local Quiz:</strong> {totalLocalQuiz}</p>
+            </div> : null}
+
+
             <div className='btn-box'>
                 {userResults.length > 0 && (
                     <button id='clear-btn' onClick={handleClearResult}>

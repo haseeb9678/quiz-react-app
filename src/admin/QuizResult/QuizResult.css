@@ -44,6 +44,7 @@ table thead tr td {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 3rem;
     gap: 10px;
     width: 100%;
 }

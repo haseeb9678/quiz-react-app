@@ -7,7 +7,6 @@ import { BiAlarm } from "react-icons/bi";
 import { getLocalResult } from '../../assets/quizResults';
 import { BiSearchAlt } from "react-icons/bi";
 import { VscArrowRight } from "react-icons/vsc";
-import { VscCheck } from "react-icons/vsc";
 
 const Quiz = () => {
     const [data, setData] = useState([]);
@@ -28,7 +27,7 @@ const Quiz = () => {
     useEffect(() => {
         // Fisher–Yates Shuffle
         function shuffleData(array) {
-            const shuffled = [...array]; // copy to avoid mutating original
+            const shuffled = [...array];
             for (let i = shuffled.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
@@ -47,7 +46,6 @@ const Quiz = () => {
         }
 
         if (dataReload) {
-            console.log('Data Reload');
             fetchData();
             setDataReload(false);
         }
@@ -63,7 +61,7 @@ const Quiz = () => {
             setQuizStart(false);
             setTimesUp(true);
             setStatus(getUserStatus());
-            setTime(0);
+            setTime(60);
             return;
         }
 
@@ -115,13 +113,13 @@ const Quiz = () => {
     const handleNext = () => {
         if (!select) {
             if (index + 1 < data.length) {
+                setWarn('');
                 setIndex(prev => prev + 1);
                 setSelect(true);
                 resetClasses();
             } else {
                 setReset(true);
                 setDataReload(true);
-                setTime(prev => prev + 1);
                 setSelect(true);
                 setIndex(0);
 
@@ -133,11 +131,11 @@ const Quiz = () => {
                     totalScore: data.length,
                     obtainScore: score,
                     performance: userStatus,
+                    categoryName: localStorage.getItem("selectedCategoryName"),
                     status: 'new'
                 }
                 const updatedRecord = [...getLocalResult(), newRecord]
                 localStorage.setItem("result", JSON.stringify(updatedRecord));
-                console.log('new: ', updatedRecord);
 
             }
         } else {
@@ -166,6 +164,16 @@ const Quiz = () => {
             startQuizBtn.current.classList.add("disable-btn");
             userBtn.current.classList.add("disable-btn");
         }
+    }
+
+    const handleReset = () => {
+        setReset(false);
+        setScore(0);
+        setIndex(0);
+        setQuizStart(false);
+        setTimesUp(false);
+        startQuizBtn.current.classList.remove("disable-btn");
+        userBtn.current.classList.remove("disable-btn");
     }
 
     const handleUser = () => {
@@ -205,14 +213,7 @@ const Quiz = () => {
                         <p id='performance-p'>{status} Performance</p>
                         <button
                             id='reset-btn'
-                            onClick={() => {
-                                setReset(false);
-                                setScore(0);
-                                setQuizStart(false);
-                                setTimesUp(false);
-                                startQuizBtn.current.classList.remove("disable-btn");
-                                userBtn.current.classList.remove("disable-btn");
-                            }}
+                            onClick={handleReset}
                         >
                             Reset
                         </button>

@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 .timer {
@@ -66,6 +67,13 @@
     align-items: center;
     width: 100%;
     gap: 10px;
+    font-size: 1.5rem;
+}
+
+#score-p,
+#performance-p,
+#warn-p {
+    font-size: 1.7rem;
 }
 
 #next-btn,
@@ -105,11 +113,6 @@
     text-align: center;
 }
 
-#score-p,
-#performance-p,
-#warn-p #category-p {
-    font-size: 1.7rem;
-}
 
 .quiz-container ul .correct,
 .quiz-container ul .wrong {

@@ -20,7 +20,6 @@ const UserPage = () => {
     const handleForm = (formData) => {
         const userName = formData.get("name");
         const length = formData.get("length");
-        console.log(userName, length);
 
         setName(userName);
         setQuizLength(length);
