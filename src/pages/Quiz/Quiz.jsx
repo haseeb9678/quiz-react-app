@@ -31,6 +31,7 @@ const Quiz = () => {
         localStorage.setItem("quizLength", location.state.quizLength);
     }, [])
 
+
     useEffect(() => {
         // Fisher–Yates Shuffle
         function shuffleData(array) {
@@ -65,6 +66,7 @@ const Quiz = () => {
 
         if (time <= 0) {
             setReset(true); // show score and reset
+            addUserResult();
             setQuizStart(false);
             setTimesUp(true);
             setStatus(getUserStatus());
@@ -113,6 +115,22 @@ const Quiz = () => {
         setSelect(false);
     };
 
+    const addUserResult = () => {
+        const userStatus = getUserStatus();
+        setStatus(userStatus);
+        const newRecord = {
+            user: location.state.username,
+            type: location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz",
+            totalScore: data.length,
+            obtainScore: score,
+            performance: userStatus,
+            categoryName: location.state.status == 'api' ? localStorage.getItem("selectedCategoryName") : "Any",
+            status: 'new'
+        }
+        const updatedRecord = [...getLocalResult(), newRecord]
+        localStorage.setItem("result", JSON.stringify(updatedRecord));
+    }
+
     const resetClasses = () => {
         options.forEach(op => op.current.classList.remove('correct', 'wrong'));
     };
@@ -129,21 +147,7 @@ const Quiz = () => {
                 setDataReload(true);
                 setSelect(true);
                 setIndex(0);
-
-                const userStatus = getUserStatus();
-                setStatus(userStatus);
-                const newRecord = {
-                    user: location.state.username,
-                    type: location.state.status == 'api' ? 'API-Based Quiz' : "Local Quiz",
-                    totalScore: data.length,
-                    obtainScore: score,
-                    performance: userStatus,
-                    categoryName: location.state.status == 'api' ? localStorage.getItem("selectedCategoryName") : "Any",
-                    status: 'new'
-                }
-                const updatedRecord = [...getLocalResult(), newRecord]
-                localStorage.setItem("result", JSON.stringify(updatedRecord));
-
+                addUserResult();
             }
         } else {
             if (quizStart)
